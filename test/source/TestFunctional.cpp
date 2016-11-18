@@ -390,7 +390,6 @@ int TestFunctional()
 		nErrorCount += TestHashHelper<char8_t>('E');
 		nErrorCount += TestHashHelper<char16_t>(0xEAEA);
 		nErrorCount += TestHashHelper<char32_t>(0x00EA4330);
-		nErrorCount += TestHashHelper<wchar_t>(L'E');
 		nErrorCount += TestHashHelper<signed short>(4330);
 		nErrorCount += TestHashHelper<unsigned short>(4330u);
 		nErrorCount += TestHashHelper<signed int>(4330);
@@ -402,6 +401,9 @@ int TestFunctional()
 		nErrorCount += TestHashHelper<float>(4330.099999f);
 		nErrorCount += TestHashHelper<double>(4330.055);
 		nErrorCount += TestHashHelper<long double>(4330.0654l);
+        #if defined(EA_WCHAR_UNIQUE) && EA_WCHAR_UNIQUE
+            nErrorCount += TestHashHelper<wchar_t>(L'E'); 
+        #endif
 	}
 
 
