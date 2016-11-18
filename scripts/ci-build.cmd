@@ -53,6 +53,7 @@ for %%c in (Debug, Release) do (
 	cd build-%PLATFORM%-gcc-%%~c
 	cmake .. -GNinja -DCMAKE_BUILD_TYPE=%%~c -DEASTL_BUILD_BENCHMARK:BOOL=ON -DEASTL_BUILD_TESTS:BOOL=ON -DCMAKE_C_COMPILER=%bin_folder%/gcc.exe -DCMAKE_CXX_COMPILER=%bin_folder%/g++.exe -DCMAKE_MAKE_PROGRAM=C:/msys64/mingw64/bin/ninja.exe
 	cmake --build .
+    if errorlevel NEQ 0 goto :end
 	cd ..
 )
 
@@ -68,6 +69,7 @@ for %%c in (%configurations%) do (
 	cd build-%PLATFORM%-clang-%%~c
 	cmake .. -GNinja -DCMAKE_BUILD_TYPE=%%~c -DEASTL_BUILD_BENCHMARK:BOOL=ON -DEASTL_BUILD_TESTS:BOOL=ON -DCMAKE_C_COMPILER=%bin_folder%/clang.exe -DCMAKE_CXX_COMPILER=%bin_folder%/clang++.exe -DCMAKE_MAKE_PROGRAM=C:/msys64/mingw64/bin/ninja.exe
 	cmake --build .
+    if errorlevel NEQ 0 goto :end
 	cd ..
 )
 
